@@ -1,0 +1,28 @@
+
+from dotenv import load_dotenv
+load_dotenv()
+
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.output_parsers import StrOutputParser
+
+
+model = ChatOpenAI(model="gpt-4o-mini")
+parser = StrOutputParser()
+
+messages = [
+    SystemMessage(content="Translate the following from English into Italian"),
+    HumanMessage(content="""
+    Once upon a time in a tranquil village surrounded by lush forests and serene mountains, there lived an old woodcutter named Elias. He was a solitary man, having spent most of his life in the quiet companionship of nature, his days marked by the rhythmic swing of his axe and the whisper of the wind through the trees. One morning, as Elias ventured deeper into the forest than usual in search of the perfect oak, he stumbled upon a hidden glade that seemed untouched by time. The trees here were ancient, their trunks wide and leaves shimmering with an ethereal glow. In the center of the glade stood an enormous oak, its branches heavy with acorns that glistened like jewels in the soft morning light. As he approached the tree, mesmerized by its majestic presence, Elias noticed a small, intricately carved box partially buried at its base. Curiosity piqued, he knelt and dug around the box with weathered hands, his heart pounding with the thrill of discovery. The box was locked, adorned with symbols that shimmered with an otherworldly light, whispering secrets long forgotten. Remembering an old village tale of a magical box that held the power to grant a single wish to its opener, Elias felt a surge of excitement mixed with a deep, unexplainable fear. He had lived a simple life, with few regrets but also few moments of true joy. The promise of a wish—something he had laughed off as mere folklore—suddenly seemed both tantalizing and intimidating. With trembling hands, he carried the box back to his cottage, where he spent the night pondering the possibilities. By dawn, his decision was made. He would open the box and wish for something he had missed during his years of solitude—companionship. Elias gently opened the box, and to his astonishment, it contained nothing but a single acorn, its shell as hard and smooth as polished stone. Feeling a fool yet compelled by a sense of destiny, Elias planted the acorn in a small pot filled with soil from the forest. Days turned into weeks, and the acorn showed no sign of growth, which slowly cemented Elias’s disappointment into resignation. However, one morning, as the first rays of sunlight pierced the fog that lay over the village, the acorn cracked and a tiny sprout emerged, its leaves unfurling like the hands of a newborn. With each passing day, the sprout grew rapidly, far quicker than any tree Elias had ever seen, and it wasn’t long before it stood tall outside his cottage, its branches reaching out as if to embrace him. Neighbors who saw the miraculous growth came to visit, their curiosity drawing them to Elias’s once-lonely doorstep. Among them was Elara, a kind-hearted woman with a gentle smile and eyes as deep as the forest lakes. She brought with her a warmth that Elias had forgotten, her presence filling his days with laughter and his nights with dreams of days to come. The tree continued to grow, its presence bringing life not just to Elias’s home but to the entire village. Its branches were said to heal and its leaves to protect, and under its shade, Elias and Elara spent many a day talking, laughing, and sharing stories. As years passed, the tree became known far and wide as the Wish Tree, and the story of Elias’s wish—the wish for companionship that brought not only love but prosperity to his village—was told and retold, a testament to the magic of belief, the power of nature, and the timeless beauty of human connection.
+    In a small, verdant village cradled by the rolling mists of the highlands lived a humble baker named Clara, whose bread was as famed as the morning sun and whose pies could make even the sternest villager smile. Clara's shop was a warm beacon of light and laughter, the heart of the village, with its doors always open to any traveler or townsfolk in need of comfort or a kind word. Despite her cheerful exterior, Clara harbored a deep yearning for adventure, a dream nurtured by the many tales told by passing wanderers who spoke of distant lands and skies filled with colors unimaginable. One crisp autumn morning, an old man with a wide-brimmed hat and a coat of patchwork colors limped into her shop. He carried with him an air of mystery and the aroma of far-off places. Over a cup of hot tea and a slice of Clara’s famous apple pie, he recounted his days as a young man traveling with a circus that floated on clouds, soaring from one exotic locale to another. Entranced by his stories, Clara revealed her own secret longing for adventure. The old man listened, his eyes twinkling, and when the last crumb of pie had been eaten, he reached into his coat and pulled out a small, leather-bound book. "This," he said, "is a map to the greatest treasure in the world." Intrigued and skeptical, Clara accepted the book, turning its pages to reveal not gold or jewels, but something far more valuable—the diary of the old man’s adventures around the world, a vivid account of life filled with wonder, laughter, and lessons learned beneath the stars.
+    Thank for listening!!             """)
+]
+
+import ipdb;ipdb.set_trace()
+
+res = model.invoke(messages)
+
+print(res)
+
+# for chunk in model.stream(messages):
+#     print(chunk, end="", flush=True)
